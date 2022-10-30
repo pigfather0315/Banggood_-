@@ -9,10 +9,10 @@ class BangGood(object):
         self.correct_file = '/Users/pigd/入口/codes/bg_data/审单文件/TT-UK-correct.xlsx'
         self.target_source = 'tradetracker'
         self.wait_status = ['back order', 'ready to process', 'payment confirmed', 'processing', 'payment preparing'
-            , 'Contact Customer', 'ready to process', 'preorder', 'unverified order', 'system is processing', 'cod exception']
+            , 'Contact Customer', 'Contact Customers', 'ready to process', 'preorder', 'unverified order', 'system is processing', 'cod exception']
         self.cancel_status = ['cancel', 'order cancel', 'order cancelled', 'closed', 'payment pending',
                               'payment preparing', 'reject', 'expired', 'cod refused', 'grouping', ' grouped',
-                              'built team', 'building team']
+                              'built team', 'building team', 'refunded']
         self.done_status = ['cod received', 'shipped', 'order completed', 'accept', 'cod confirm']
 
     def write_data(self, sheet, line_num, data_list):
@@ -66,8 +66,8 @@ class BangGood(object):
                     self.write_data(worksheet, idx + 1, [order_number, 'Wait', ''])
                 elif order_status.lower() in self.cancel_status:
                     self.write_data(worksheet, idx + 1, [order_number, 'Cancel', 'Order Cancelled'])
-                elif order_status.lower() == 'refunded':
-                    self.write_data(worksheet, idx + 1, [order_number, 'Cancel', 'Refunded'])
+                #elif order_status.lower() == 'refunded':
+                    #self.write_data(worksheet, idx + 1, [order_number, 'Cancel', 'Refunded'])
                 elif order_status.lower() in self.done_status:
                     self.write_data(worksheet, idx + 1, [order_number, 'Done', ''])
                 elif order_status.lower() == 'split':
